@@ -7,7 +7,7 @@ on:
 jobs:
   terraform:
     name: Terraform Actions
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     env:
        NEWRELIC_ACCOUNT_ID: ${{ secrets.NEWRELIC_ACCOUNT_ID }}
        NEWRELIC_API_KEY: ${{ secrets.NEWRELIC_API_KEY }}
