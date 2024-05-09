@@ -7,8 +7,10 @@ terraform {
   }
 }
 
-provider "newrelic" {
-    account_id = NEWRELIC_ACCOUNT_ID 
-  api_key    = secrets.NEWRELIC_API_KEY
-  region     = secrets.NEWRELIC_REGION
+
+ provider "newrelic" {
+  account_id = "YOUR_NEWRELIC_ACCOUNT_ID"
+  api_key    = "YOUR_NEWRELIC_API_KEY"
+  region     = "YOUR_NEWRELIC_REGION"
 }
+
