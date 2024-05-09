@@ -8,8 +8,8 @@ terraform {
 }
 
 
- provider "newrelic" {
-       NEWRELIC_ACCOUNT_ID: ${{ secrets.NEWRELIC_ACCOUNT_ID }}
-       NEWRELIC_API_KEY: ${{ secrets.NEWRELIC_API_KEY }}
-       NEWRELIC_REGION: ${{ secrets.NEWRELIC_REGION }}
+provider "newrelic" {
+  account_id = var.NEWRELIC_ACCOUNT_ID
+  api_key    = var.NEWRELIC_API_KEY
+  region     = var.NEWRELIC_REGION
 }
