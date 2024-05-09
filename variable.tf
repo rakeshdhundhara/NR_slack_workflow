@@ -4,12 +4,4 @@ variable "channel1" {
 variable "workflow" {
   type = any
 }
-variable "NEWRELIC_ACCOUNT_ID" {
 
-}
-variable "NEWRELIC_API_KEY" {
-
-}
-variable "NEWRELIC_REGION" {
-
-}
