@@ -9,9 +9,9 @@ jobs:
     name: Terraform Actions
     runs-on: ubuntu-latest
     env:
-       NEWRELIC_ACCOUNT_ID: ${{ secrets.NEWRELIC_ACCOUNT_ID }}
-       NEWRELIC_API_KEY: ${{ secrets.NEWRELIC_API_KEY }}
-       NEWRELIC_REGION: ${{ secrets.NEWRELIC_REGION }}
+      TF_VAR_NEWRELIC_ACCOUNT_ID: ${{ secrets.NEWRELIC_ACCOUNT_ID }}
+      TF_VAR_NEWRELIC_API_KEY: ${{ secrets.NEWRELIC_API_KEY }}
+      TF_VAR_NEWRELIC_REGION: ${{ secrets.NEWRELIC_REGION }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
