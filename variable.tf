@@ -6,3 +6,6 @@ variable "workflow" {
 }
 
 
+variable "TF_VAR_newrelic_account_id" {}
+variable "TF_VAR_newrelic_api_key" {}
+variable "TF_VAR_newrelic_region" {}
