@@ -9,7 +9,7 @@ terraform {
 
 
 provider "newrelic" {
-  account_id = vars.NEWRELIC_ACCOUNT_ID
-  api_key    = vars.NEWRELIC_API_KEY
-  region     = vars.NEWRELIC_REGION
+  account_id = secrets.NEWRELIC_ACCOUNT_ID
+  api_key    = secrets.NEWRELIC_API_KEY
+  region     = secrets.NEWRELIC_REGION
 }
