@@ -1,0 +1,45 @@
+name: Terraform Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  NEWRELIC_ACCOUNT_ID: 4399529
+  NEWRELIC_API_KEY: ${{ secrets.NEWRELIC_API_KEY }}
+  NEWRELIC_REGION: "US"
+
+jobs:
+  terraform:
+    name: Terraform Actions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: "~> 1.0"
+      
+      - name: Terraform Init
+        run: terraform init
+      
+      - name: Terraform Validate
+        run: terraform validate
+      
+      - name: Terraform Plan
+        run: terraform plan 
+      
+      - name: Save Terraform Plan
+        uses: actions/upload-artifact@v2
+        with:
+          name: tfplan
+          path: ./tfplan
+      
+      - name: Terraform Apply
+        run: terraform apply -auto-approve tfplan
