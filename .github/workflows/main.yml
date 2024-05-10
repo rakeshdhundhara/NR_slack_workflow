@@ -59,7 +59,8 @@ jobs:
         run: terraform init
 
       - name: Terraform Plan
-        run: terraform plan -var="NEWRELIC_ACCOUNT_ID=${{ secrets.NEWRELIC_ACCOUNT_ID }}" -var="NEWRELIC_API_KEY= ${{ secrets.NEWRELIC_API_KEY }}" 
+        run: terraform plan -var="NEWRELIC_ACCOUNT_ID=your_account_id" -var="NEWRELIC_API_KEY=your_api_key"
+
 
         # working-directory: ${{ env.ROOT_PATH }}
 
