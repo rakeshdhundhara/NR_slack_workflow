@@ -7,11 +7,8 @@ terraform {
   }
 }
 
-
 provider "newrelic" {
-  account_id = var.NEWRELIC_ACCOUNT_ID
-  api_key    = var.NEWRELIC_API_KEY
-  region     = var.NEWRELIC_REGION
+  account_id = 4399529
+  api_key    = "NRAK-AHNN9RXMFD2FZHV8IPX53XKOS8S" # usually prefixed with 'NRAK'
+  region     = "US"                               # Valid regions are US and EU
 }
-
-
