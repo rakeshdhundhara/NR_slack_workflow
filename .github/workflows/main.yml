@@ -45,6 +45,7 @@ jobs:
       NEWRELIC_ACCOUNT_ID: ${{ secrets.NEWRELIC_ACCOUNT_ID }}
       NEWRELIC_API_KEY: ${{ secrets.NEWRELIC_API_KEY }}
       NEWRELIC_REGION: ${{ secrets.NEWRELIC_REGION }}
+      ROOT_PATH: '${{github.workspace}}'
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
@@ -59,6 +60,7 @@ jobs:
 
       - name: Terraform Plan
         run: terraform plan
+        working-directory: ${{ env.ROOT_PATH }}
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
