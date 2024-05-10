@@ -11,7 +11,7 @@ channel1 = {
 }
 
 workflow = {
-  name                  = "workflow-slack"
+  name                  = "workflow-slack_001"
   muting_rules_handling = "NOTIFY_ALL_ISSUES"
   name1                 = "Filter-name"
   type                  = "FILTER"
