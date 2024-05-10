@@ -6,7 +6,6 @@ variable "workflow" {
 }
 
 
-variable "NEWRELIC_ACCOUNT_ID" {}
-variable "NEWRELIC_API_KEY" {}
-variable "NEWRELIC_REGION" {}
+
+
 
