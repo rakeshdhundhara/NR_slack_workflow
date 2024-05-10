@@ -1,4 +1,4 @@
-name: Terraform Workflow
+name: Terraform Deployment
 
 on:
   push:
@@ -10,9 +10,9 @@ jobs:
     name: Terraform Actions
     runs-on: ubuntu-latest
     env:
-      TF_VAR_newrelic_account_id: ${{ secrets.NEWRELIC_ACCOUNT_ID }}
-      TF_VAR_newrelic_api_key: ${{ secrets.NEWRELIC_API_KEY }}
-      TF_VAR_newrelic_region: ${{ secrets.NEWRELIC_REGION }}
+      NEWRELIC_ACCOUNT_ID: ${{ secrets.NEWRELIC_ACCOUNT_ID }}
+      NEWRELIC_API_KEY: ${{ secrets.NEWRELIC_API_KEY }}
+      NEWRELIC_REGION: ${{ secrets.NEWRELIC_REGION }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
@@ -20,13 +20,13 @@ jobs:
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v1
         with:
-          terraform_version: v1.5.6
+          terraform_version: 1.0.0
 
       - name: Terraform Init
         run: terraform init
 
       - name: Terraform Plan
-        run: terraform plan 
-        
+        run: terraform plan
+
       - name: Terraform Apply
         run: terraform apply -auto-approve
