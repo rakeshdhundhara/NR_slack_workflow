@@ -70,6 +70,8 @@ jobs:
         # working-directory: ${{ env.ROOT_PATH }}
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+          needs:[Terraform Plan]
+        run: terraform apply -var="NEWRELIC_ACCOUNT_ID=${{ env.NEWRELIC_ACCOUNT_ID }}" -var="NEWRELIC_API_KEY=${{ env.NEWRELIC_API_KEY }}"
+               -auto-approve
 
      
