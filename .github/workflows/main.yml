@@ -63,5 +63,8 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve
 
+      - name: Manual Approval
+        uses: wei/manual-approval@v1
+
       - name: Terraform Destroy
         run: terraform destroy -auto-approve
