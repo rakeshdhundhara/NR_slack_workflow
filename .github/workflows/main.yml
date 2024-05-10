@@ -61,7 +61,9 @@ jobs:
       - name: Terraform Plan
         # run: terraform plan -var="NEWRELIC_ACCOUNT_ID=your_account_id" -var="NEWRELIC_API_KEY=your_api_key"
       
-        run: terraform plan -var="NEWRELIC_ACCOUNT_ID=${{ secrets.NEWRELIC_ACCOUNT_ID }}" -var="NEWRELIC_API_KEY=${{ secrets.NEWRELIC_API_KEY }}"
+        # run: terraform plan -var="NEWRELIC_ACCOUNT_ID=${{ secrets.NEWRELIC_ACCOUNT_ID }}" -var="NEWRELIC_API_KEY=${{ secrets.NEWRELIC_API_KEY }}"
+      - name: Terraform Plan
+        run: terraform plan -var="NEWRELIC_ACCOUNT_ID=${{ env.NEWRELIC_ACCOUNT_ID }}" -var="NEWRELIC_API_KEY=${{ env.NEWRELIC_API_KEY }}"
 
 
 
