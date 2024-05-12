@@ -54,7 +54,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:   # Manual trigger
+  # Manual trigger
 
 jobs:
   terraform_apply:
