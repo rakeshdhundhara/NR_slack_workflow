@@ -7,13 +7,9 @@ on:
   workflow_dispatch:   # Manual trigger
 
 jobs:
-  terraform:
-    name: Terraform Actions
+  terraform_apply:
+    name: Terraform Apply
     runs-on: ubuntu-latest
-    env:
-      NEWRELIC_ACCOUNT_ID: ${{ secrets.NEWRELIC_ACCOUNT_ID }}
-      NEWRELIC_API_KEY: ${{ secrets.NEWRELIC_API_KEY }}
-   
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
@@ -26,12 +22,29 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
-      # - name: Terraform Plan
-      #   run: terraform plan -var="NEWRELIC_ACCOUNT_ID=${{ env.NEWRELIC_ACCOUNT_ID }}" -var="NEWRELIC_API_KEY=${{ env.NEWRELIC_API_KEY }}"
-
       - name: Terraform Apply
-        run: terraform apply -var="NEWRELIC_ACCOUNT_ID=${{ env.NEWRELIC_ACCOUNT_ID }}" -var="NEWRELIC_API_KEY=${{ env.NEWRELIC_API_KEY }}" -auto-approve
+        run: terraform apply -var="NEWRELIC_ACCOUNT_ID=${{ secrets.NEWRELIC_ACCOUNT_ID }}" -var="NEWRELIC_API_KEY=${{ secrets.NEWRELIC_API_KEY }}" -auto-approve
+
+      - name: Manual Approval
+        if: github.event_name == 'workflow_dispatch'
+        run: echo "This step serves as a manual approval step. Click 'Run workflow' button to continue."
+
+  terraform_destroy:
+    name: Terraform Destroy
+    runs-on: ubuntu-latest
+    needs: terraform_apply
+    if: github.event_name == 'workflow_dispatch'   # Only run on manual trigger
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.0
+
+      - name: Terraform Init
+        run: terraform init
 
       - name: Terraform Destroy
-        if: github.event_name == 'workflow_dispatch'
-        run: terraform destroy -var="NEWRELIC_ACCOUNT_ID=${{ env.NEWRELIC_ACCOUNT_ID }}" -var="NEWRELIC_API_KEY=${{ env.NEWRELIC_API_KEY }}" -auto-approve
+        run: terraform destroy -var="NEWRELIC_ACCOUNT_ID=${{ secrets.NEWRELIC_ACCOUNT_ID }}" -var="NEWRELIC_API_KEY=${{ secrets.NEWRELIC_API_KEY }}" -auto-approve
