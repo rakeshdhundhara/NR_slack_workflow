@@ -27,21 +27,8 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -var="NEWRELIC_ACCOUNT_ID=${{ secrets.NEWRELIC_ACCOUNT_ID }}" -var="NEWRELIC_API_KEY=${{ secrets.NEWRELIC_API_KEY }}" -auto-approve
 
-  terraform_destroy:
-    name: Terraform Destroy
-    runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' 
-    environment:
-      name: development
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
-
       - name: Manual Approval
         run: echo "This step serves as a manual approval step. Click 'Run workflow' button to continue."
-
-      - name: Terraform Init
-        run: terraform init
 
       - name: Terraform Destroy
         run: terraform destroy -var="NEWRELIC_ACCOUNT_ID=${{ secrets.NEWRELIC_ACCOUNT_ID }}" -var="NEWRELIC_API_KEY=${{ secrets.NEWRELIC_API_KEY }}" -auto-approve
